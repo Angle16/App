@@ -22,8 +22,7 @@ export default class LoginScreen extends Component{
             <div>
                 <NavBar
                     mode="dark"
-                    icon={<Icon type="left" />}
-                    onLeftClick={() => { this.props.history.goBack() }}
+                   
                 >登录</NavBar>
                 <WhiteSpace />
                 <List>
@@ -48,7 +47,7 @@ export default class LoginScreen extends Component{
                 <Button
                 type={'primary'}
                 onClick={async()=>{
-                    const result=await userManager.register(this.state.username,this.state.password);
+                    const result=await userManager.login(this.state.username,this.state.password);
                     console.log(result);
                     if(result.success===false){
                         Toast.fail(result.errorMessage);
