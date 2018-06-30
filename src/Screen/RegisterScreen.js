@@ -58,7 +58,7 @@ export default class RegisterScreen extends Component {
                     }
                     this.props.history.replace('/HomeScreen');
                 }}
-                >
+                >提交注册
                     </Button>
                 </WingBlank>
             </div>

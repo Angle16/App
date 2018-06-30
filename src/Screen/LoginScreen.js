@@ -56,8 +56,16 @@ export default class LoginScreen extends Component{
                     }
                     this.props.history.replace('/HomeScreen');
                 }}
-                >
+                >登录
                     </Button>
+                    <WhiteSpace/>
+                    <Button
+                    type={'primary'}
+                    onClick={()=>{
+                        this.props.history.push('/RegisterScreen',{})
+                    }}
+                    >注册
+                        </Button>
                 </WingBlank>
             </div>
         )
