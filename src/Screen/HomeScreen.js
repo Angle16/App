@@ -8,6 +8,7 @@ PullToRefresh
 import messageManager from '../DataServer/MessageManager';
 import userManager from '../DataServer/UserManager';
 import HomeListItem from '../ViewComponent/HomeListItem';
+import { list } from 'postcss';
 export  default class HomeScreen extends Component{
     async componentDidMount(){
         if(userManager.isLogin()===false){
@@ -79,11 +80,40 @@ render(){
                 >退出
                     </span>
             ]}
+            rightContent={[
+                <span
+                key={2}
+                onClick={()=>{
+                    this.props.history.push('/CreateMessageScreen');
+                }}
+                >
+                发消息    </span>
+            ]}
             >
-                </NavBar>
-            </div>
+                留言板</NavBar>
+                <ListView
+            useBodyScroll={true}
+            dataSource={this.state.dataSource}
+            pullToRefresh={
+                <PullToRefresh
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.onRefresh}
+                />
+            }
+            renderRow={this.renderRow}
+        />
+      </div>
     )
-}
+  }
 
-
+    renderRow = (message)=>{
+        return (
+            <HomeListItem 
+                {...message}
+                onItemClick={()=>{
+                    this.props.history.push('/CommentScreen/'+message.id)
+                }} 
+            />
+        )
+    }
 }
